@@ -36,6 +36,8 @@ const Formulario = () => {
                    <textarea className=" border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md" placeholder="Describe los sintomas"/>
                </div>
 
+               <input type="submit" className="bg-indigo-600 w-full p-3 text-white rounded-md uppercase font-bold cursor-pointer hover:bg-indigo-700" value="Agregar Paciente"></input>
+
            </form>
          
       </div>
