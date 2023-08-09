@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const Formulario = () => {
+const Formulario = ({pacientes, setPacientes}) => {
   const [nombre, setNombre] = useState("")
   const [propietario, setPropietario] = useState("")
   const [email, setEmail] = useState("")
@@ -12,6 +12,25 @@ const Formulario = () => {
     e.preventDefault();
 
     console.log("enviado formulario");
+    console.log(pacientes)
+
+    const objPacientes = {
+        nombre,
+        propietario,
+        email, 
+        fecha,
+        sintomas
+    }
+//se hace una copia de pacientes y se le agrega el nuevo objeto (objPacientes)
+    setPacientes([...pacientes, objPacientes])
+
+    //Reiniciando form
+
+    setNombre("")
+    setPropietario("")
+    setEmail("")
+    setFecha("")
+    setSintomas("")
 
   }
 
