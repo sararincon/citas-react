@@ -7,8 +7,18 @@ const Formulario = () => {
   const [fecha, setFecha] = useState("")
   const [sintomas, setSintomas] = useState("")
 
+  const handleSubmit = (e) => {
+
+    e.preventDefault();
+
+    console.log("enviado formulario");
+
+  }
+
+
+
   return (
-    <div className="md:w-1/2 lg:w-3/5">
+    <div className=" mx-3 md:w-1/2 lg:w-3/5">
       <h2 className="font-black text-3xl text-center">Seguimiento Pacientes</h2>
 
       <p className="text-lg mb-5 mt-5 text-center">
@@ -16,7 +26,9 @@ const Formulario = () => {
         <span className="text-indigo-600 font-bold">Administralos</span>
       </p>
 
-      <form className="mb-5 bg-white rounded-lg shadow-md  py-5 px-5">
+      <form 
+      onSubmit={handleSubmit}
+      className="mb-5 bg-white rounded-lg shadow-md  py-5 px-5">
         {/* Nombre */}
         <div className="mb-3">
           <label
