@@ -20,7 +20,12 @@ function App() {
       setPacientes= {setPacientes}
         
         />
-        <Listado />
+        <Listado
+        //le pasamos por props "pacientes"
+
+        pacientes={pacientes}
+        
+        />
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Error from "./Error";
 
 const Formulario = ({pacientes, setPacientes}) => {
   const [nombre, setNombre] = useState("")
@@ -6,20 +7,40 @@ const Formulario = ({pacientes, setPacientes}) => {
   const [email, setEmail] = useState("")
   const [fecha, setFecha] = useState("")
   const [sintomas, setSintomas] = useState("")
+  const [error, setError] = useState(false)
+
+  const generarId = () =>{
+
+   const random =  Math.random().toString(34).substring(2); 
+   const fecha = Date.now().toString(34)
+
+    return fecha + random
+}
 
   const handleSubmit = (e) => {
 
     e.preventDefault();
 
-    console.log("enviado formulario");
-    console.log(pacientes)
+   
+
+    // console.log("enviado formulario");
+    // console.log(pacientes)
+     
+    if ([nombre, propietario, email, fecha, sintomas].includes('')){
+
+        console.log("hay un campo vacio")
+
+        setError(true)
+        return
+    }
 
     const objPacientes = {
         nombre,
         propietario,
         email, 
         fecha,
-        sintomas
+        sintomas,
+        id: generarId()
     }
 //se hace una copia de pacientes y se le agrega el nuevo objeto (objPacientes)
     setPacientes([...pacientes, objPacientes])
@@ -49,6 +70,8 @@ const Formulario = ({pacientes, setPacientes}) => {
       onSubmit={handleSubmit}
       className="mb-5 bg-white rounded-lg shadow-md  py-5 px-5">
         {/* Nombre */}
+
+        {error && <Error mensaje= "Todos los campos son obligatorios"/>}
         <div className="mb-3">
           <label
             htmlFor="mascota"
