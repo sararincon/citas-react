@@ -23,6 +23,15 @@ const Pacientes = ({paciente}) => {
         Sintomas:
         <span className="font-normal normal-case">{sintomas}</span>
       </p>
+      <div>
+        <button className="bg-indigo-700 hover:bg-indigo-800 text-white rounded-lg px-3 font-bold uppercase m-2">
+            Editar 
+        </button>
+
+        <button className="bg-red-700 hover:bg-red-800 text-white rounded-lg px-3 font-bold uppercase">
+            Eliminar
+        </button>
+      </div>
     </div>
   );
 };
