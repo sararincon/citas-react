@@ -1,6 +1,6 @@
 
 
-const Pacientes = ({paciente}) => {
+const Pacientes = ({paciente, setPaciente}) => {
 
     const {nombre, propietario, email, fecha, sintomas} = paciente
   return (
@@ -24,11 +24,13 @@ const Pacientes = ({paciente}) => {
         <span className="font-normal normal-case">{sintomas}</span>
       </p>
       <div>
-        <button className="bg-indigo-700 hover:bg-indigo-800 text-white rounded-lg px-3 font-bold uppercase m-2">
+
+{/* onclick como arrow fuunction porque le vamos a pasar un argumento. Esperamos a que se haga el click para continuar a Editar */}
+        <button className="bg-indigo-700 hover:bg-indigo-800 text-white rounded-lg px-3 font-bold uppercase m-2" onClick={()=>setPaciente(paciente)}>
             Editar 
         </button>
 
-        <button className="bg-red-700 hover:bg-red-800 text-white rounded-lg px-3 font-bold uppercase">
+        <button className="bg-red-700 hover:bg-red-800 text-white rounded-lg px-3 font-bold uppercase" onClick={()=>setPaciente(paciente)}>
             Eliminar
         </button>
       </div>

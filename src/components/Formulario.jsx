@@ -1,13 +1,32 @@
 import { useState, useEffect } from "react";
 import Error from "./Error";
 
-const Formulario = ({pacientes, setPacientes}) => {
+const Formulario = ({pacientes, setPacientes, paciente}) => {
   const [nombre, setNombre] = useState("")
   const [propietario, setPropietario] = useState("")
   const [email, setEmail] = useState("")
   const [fecha, setFecha] = useState("")
   const [sintomas, setSintomas] = useState("")
   const [error, setError] = useState(false)
+
+
+  //Verificamos que no este vacio paciente con un UseEfecct detectando cuando ese cambio se realice y luego lo asociamos al formulario nuevamente
+  useEffect(() => {
+
+      if(Object.keys(paciente).length > 0){
+        setNombre(paciente.nombre)
+        setPropietario(paciente.propietario)
+        setEmail(paciente.email)
+        setFecha(paciente.fecha)
+        setSintomas(paciente.sintomas)
+
+
+      }
+  }, [paciente])
+  
+
+ 
+
 
   const generarId = () =>{
 
@@ -20,8 +39,6 @@ const Formulario = ({pacientes, setPacientes}) => {
   const handleSubmit = (e) => {
 
     e.preventDefault();
-
-   
 
     // console.log("enviado formulario");
     // console.log(pacientes)
@@ -40,10 +57,20 @@ const Formulario = ({pacientes, setPacientes}) => {
         email, 
         fecha,
         sintomas,
-        id: generarId()
     }
-//se hace una copia de pacientes y se le agrega el nuevo objeto (objPacientes)
+
+    if(paciente.id){
+      //Editando Paciente
+
+      console.log("editando")
+
+    }else{
+      //Agregando Paciente
+      //se hace una copia de pacientes y se le agrega el nuevo objeto (objPacientes)
+    objPacientes.generarId()
     setPacientes([...pacientes, objPacientes])
+    }
+
 
     //Reiniciando form
 
@@ -156,7 +183,7 @@ const Formulario = ({pacientes, setPacientes}) => {
         <input
           type="submit"
           className="bg-indigo-600 w-full p-3 text-white rounded-md uppercase font-bold cursor-pointer hover:bg-indigo-700"
-          value="Agregar Paciente"
+          value={paciente.id ? "Editar Paciente" : "Agregar Paciente"}
         ></input>
       </form>
     </div>
